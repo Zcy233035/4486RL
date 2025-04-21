@@ -27,7 +27,7 @@ def main():
     # make_vec_env 会创建多个并行环境，加速数据收集 (n_envs=32 表示创建32个)
     # 如果你想先只用一个环境观察，可以设置 n_envs=1
     env_id = "BipedalWalker-v3"
-    vec_env = make_vec_env(env_id, n_envs=32)
+    vec_env = make_vec_env(env_id, n_envs=4)
 
     # --- 2. 定义模型 ---
     # "MlpPolicy": 告诉 SB3 使用默认的 MLP 网络作为 Actor 和 Critic 的 backbone。
@@ -43,8 +43,8 @@ def main():
         verbose=1,
         tensorboard_log="./ppo_bipedalwalker_tensorboard/",
         device=device,
-        n_steps=4096,
-        batch_size=512,
+        n_steps=2048,
+        batch_size=64,
         # 你可以在这里继续添加其他想调整的超参数，如 n_epochs, learning_rate等
     )
 
@@ -54,7 +54,7 @@ def main():
     #                  你可以先设小一点（比如 10000 或 50000）来快速测试流程是否跑通。
     # tb_log_name:   TensorBoard 日志的名称，你可以在终端用 tensorboard --logdir ./ppo_bipedalwalker_tensorboard/ 查看训练曲线。
     print("开始训练...")
-    total_train_steps = 5_000_000 # 训练一百万步
+    total_train_steps = 3_000_000 # 训练一百万步
     model.learn(total_timesteps=total_train_steps, tb_log_name="first_run")
     print("训练完成！")
 

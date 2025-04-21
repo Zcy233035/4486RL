@@ -1,0 +1,2 @@
+gymnasium[box2d]
+stable_baselines3

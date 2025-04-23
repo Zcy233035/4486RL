@@ -6,21 +6,9 @@ import os
 import argparse
 
 def linear_schedule(initial_value: float, final_value: float) -> callable:
-    """
-    Linear learning rate schedule.
-
-    :param initial_value: Initial learning rate.
-    :param final_value: Final learning rate.
-    :return: schedule that computes
-      current learning rate depending on remaining progress
-    """
+    
     def func(progress_remaining: float) -> float:
-        """
-        Progress will decrease from 1 (beginning) to 0.
-
-        :param progress_remaining:
-        :return: current learning rate
-        """
+        
         return final_value + progress_remaining * (initial_value - final_value)
 
     return func
@@ -61,7 +49,7 @@ def main():
     )
 
     print("开始训练...")
-    total_train_steps = 10_00_000
+    total_train_steps = 15_00_000
     model.learn(total_timesteps=total_train_steps, tb_log_name="first_run", progress_bar=True)
     print("训练完成！")
 

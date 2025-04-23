@@ -28,7 +28,7 @@ def main():
         device=device,
         n_steps=2048,
         batch_size=64,
-        n_epochs=10,
+        n_epochs=4,
         gamma=0.99,
         gae_lambda=0.95,
         clip_range=0.2,
@@ -38,7 +38,7 @@ def main():
     )
 
     print("开始训练...")
-    total_train_steps = 5_00_000
+    total_train_steps = 10_00_000
     model.learn(total_timesteps=total_train_steps, tb_log_name="first_run")
     print("训练完成！")
 
